@@ -1,4 +1,9 @@
 
+using MVCDesignPatternsApp.AppDbContext;
+using MVCDesignPatternsApp.AppRepository;
+using MVCDesignPatternsApp.IAppRepository;
+using MVCDesignPatternsApp.Models;
+
 namespace MVCDesignPatternsApp
 {
     public class Program
@@ -8,7 +13,8 @@ namespace MVCDesignPatternsApp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
+            builder.Services.AddScoped<UnitOfWork>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
